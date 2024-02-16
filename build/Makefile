@@ -129,6 +129,30 @@ FlappyBird/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FlappyBird.dir/build.make CMakeFiles/FlappyBird.dir/build
 .PHONY : FlappyBird/fast
 
+basegraphic.o: basegraphic.cpp.o
+.PHONY : basegraphic.o
+
+# target to build an object file
+basegraphic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FlappyBird.dir/build.make CMakeFiles/FlappyBird.dir/basegraphic.cpp.o
+.PHONY : basegraphic.cpp.o
+
+basegraphic.i: basegraphic.cpp.i
+.PHONY : basegraphic.i
+
+# target to preprocess a source file
+basegraphic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FlappyBird.dir/build.make CMakeFiles/FlappyBird.dir/basegraphic.cpp.i
+.PHONY : basegraphic.cpp.i
+
+basegraphic.s: basegraphic.cpp.s
+.PHONY : basegraphic.s
+
+# target to generate assembly for a file
+basegraphic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FlappyBird.dir/build.make CMakeFiles/FlappyBird.dir/basegraphic.cpp.s
+.PHONY : basegraphic.cpp.s
+
 gameloop.o: gameloop.cpp.o
 .PHONY : gameloop.o
 
@@ -234,6 +258,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FlappyBird"
+	@echo "... basegraphic.o"
+	@echo "... basegraphic.i"
+	@echo "... basegraphic.s"
 	@echo "... gameloop.o"
 	@echo "... gameloop.i"
 	@echo "... gameloop.s"

@@ -12,7 +12,9 @@ public:
 
     // This method updates the position of the player and its animations
     void updatePosition(bool up);
-    bool isCollision(PipeManager pipe_manager); 
+    inline void updateState(bool state) {
+        healthy_state = state;
+    }
 
 private:
     // Methods

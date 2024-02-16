@@ -871,5 +871,6 @@ CMakeFiles/FlappyBird.dir/gameloop.cpp.o: \
   /Users/abdulazizsiddiqi/Projects/FlappyBird/gameloop.h \
   /Users/abdulazizsiddiqi/Projects/FlappyBird/pipemanager.h \
   /Users/abdulazizsiddiqi/Projects/FlappyBird/player.h \
+  /Users/abdulazizsiddiqi/Projects/FlappyBird/basegraphic.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/iostream \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include/c++/v1/istream

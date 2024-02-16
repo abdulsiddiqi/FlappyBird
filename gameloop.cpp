@@ -4,7 +4,7 @@
 #include <memory>
 #include <chrono>
 
-GameLoop::GameLoop(sf::RenderWindow& window): main_window(window) {
+GameLoop::GameLoop(sf::RenderWindow& window): base_graphic{window.getSize().x}, main_window(window) {
     if (!background_tex.loadFromFile("../assets/sprites/background-day.png")) {
         throw std::invalid_argument("Couldn't load file");
     }
@@ -37,8 +37,12 @@ int GameLoop::startLoop() {
         // Logic
         player.updatePosition(up);
         pipe_manager.updatePipes();
-        if (player.isCollision(pipe_manager)) {
+        base_graphic.update();
+        
+        if (isCollision()) {
+            player.updateState(false);
             pipe_manager.updateState(false);
+            base_graphic.updateState(false);
         }
 
         if (player.getInstance().getPosition().y + player.getInstance().getSize().y > main_window.getSize().y) {
@@ -50,6 +54,10 @@ int GameLoop::startLoop() {
         main_window.clear();
         for (auto shape_ptr: permanentObjects) {
             main_window.draw(*shape_ptr);
+        }
+
+        for (auto base_ptr: base_graphic.getInstances()) {
+            main_window.draw(*base_ptr);
         }
 
         for (auto pipe_ptr: pipe_manager.getPipes()) {
@@ -66,6 +74,7 @@ int GameLoop::startLoop() {
 int GameLoop::init() {
     pipe_manager.init();
     player.init(main_window.getSize().y);
+    base_graphic.init();
 
     return 0;
 }
@@ -80,13 +89,17 @@ int GameLoop::initShapes() {
     background->setPosition(0,0);
     background->setTexture(&background_tex);
 
-    std::shared_ptr<sf::RectangleShape> base = std::make_shared<sf::RectangleShape>();
-    base->setSize(sf::Vector2f(288*2, 300));
-    base->setPosition(0,1024 - base->getSize().y);
-    base->setTexture(&base_tex);
-
     permanentObjects.push_back(background);
-    permanentObjects.push_back(base);
 
     return 0;
+}
+
+bool GameLoop::isCollision() {
+    for (auto pipe_ptr: pipe_manager.getPipes()) {
+        if (pipe_ptr.get()->getGlobalBounds().intersects(player.getInstance().getGlobalBounds())) {
+
+            return true;
+        }
+    }
+    return false;
 }

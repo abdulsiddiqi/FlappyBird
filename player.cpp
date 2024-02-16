@@ -57,13 +57,3 @@ void Player::updateTexture() {
         prev_update = now;
     }
 }
-
-bool Player::isCollision(PipeManager pipe_manager) {
-    for (auto pipe_ptr: pipe_manager.getPipes()) {
-        if (pipe_ptr.get()->getGlobalBounds().intersects(bird_ptr.get()->getGlobalBounds())) {
-            healthy_state = false;
-            return true;
-        }
-    }
-    return false;
-}

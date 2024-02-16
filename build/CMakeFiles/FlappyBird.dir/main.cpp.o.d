@@ -872,4 +872,5 @@ CMakeFiles/FlappyBird.dir/main.cpp.o: \
   /Users/abdulazizsiddiqi/vcpkg/installed/arm64-osx/include/SFML/Graphics/Text.hpp \
   /Users/abdulazizsiddiqi/vcpkg/installed/arm64-osx/include/SFML/Graphics/VertexBuffer.hpp \
   /Users/abdulazizsiddiqi/Projects/FlappyBird/pipemanager.h \
-  /Users/abdulazizsiddiqi/Projects/FlappyBird/player.h
+  /Users/abdulazizsiddiqi/Projects/FlappyBird/player.h \
+  /Users/abdulazizsiddiqi/Projects/FlappyBird/basegraphic.h

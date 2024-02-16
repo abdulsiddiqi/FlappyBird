@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/abdulazizsiddiqi/Projects/FlappyBird/basegraphic.cpp" "CMakeFiles/FlappyBird.dir/basegraphic.cpp.o" "gcc" "CMakeFiles/FlappyBird.dir/basegraphic.cpp.o.d"
   "/Users/abdulazizsiddiqi/Projects/FlappyBird/gameloop.cpp" "CMakeFiles/FlappyBird.dir/gameloop.cpp.o" "gcc" "CMakeFiles/FlappyBird.dir/gameloop.cpp.o.d"
   "/Users/abdulazizsiddiqi/Projects/FlappyBird/main.cpp" "CMakeFiles/FlappyBird.dir/main.cpp.o" "gcc" "CMakeFiles/FlappyBird.dir/main.cpp.o.d"
   "/Users/abdulazizsiddiqi/Projects/FlappyBird/pipemanager.cpp" "CMakeFiles/FlappyBird.dir/pipemanager.cpp.o" "gcc" "CMakeFiles/FlappyBird.dir/pipemanager.cpp.o.d"

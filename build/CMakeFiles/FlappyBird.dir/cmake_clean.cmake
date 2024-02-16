@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FlappyBird.dir/basegraphic.cpp.o"
+  "CMakeFiles/FlappyBird.dir/basegraphic.cpp.o.d"
   "CMakeFiles/FlappyBird.dir/gameloop.cpp.o"
   "CMakeFiles/FlappyBird.dir/gameloop.cpp.o.d"
   "CMakeFiles/FlappyBird.dir/main.cpp.o"
