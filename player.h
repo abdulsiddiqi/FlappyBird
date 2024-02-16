@@ -3,13 +3,8 @@
 
 class Player {
 public:
-    Player() {
-        speed_y = 0;
-        prev_update = clock.now();
-        texture_index = 1;
-    }
-
-    int init(float window_max_y);
+    Player();
+    void init(float window_max_y);
 
     inline sf::RectangleShape getInstance() {
         return *bird_ptr;
@@ -34,5 +29,5 @@ private:
     sf::Texture bird_mid_tex, bird_up_tex, bird_down_tex;
     std::vector<std::shared_ptr<sf::Texture>> textures;
     int texture_index;
-    bool healthy_state = true;
+    bool healthy_state;
 };

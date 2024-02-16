@@ -5,8 +5,7 @@
 
 class GameLoop {
 public:
-    GameLoop(sf::RenderWindow& window): main_window(window) {
-    };
+    GameLoop(sf::RenderWindow& window);
 
     int startLoop();
     int initShapes();

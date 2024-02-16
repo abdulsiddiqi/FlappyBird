@@ -4,6 +4,15 @@
 #include <memory>
 #include <chrono>
 
+GameLoop::GameLoop(sf::RenderWindow& window): main_window(window) {
+    if (!background_tex.loadFromFile("../assets/sprites/background-day.png")) {
+        throw std::invalid_argument("Couldn't load file");
+    }
+    if (!base_tex.loadFromFile("../assets/sprites/base.png")) {
+        throw std::invalid_argument("Couldn't load file");
+    }
+};
+
 int GameLoop::startLoop() {
     // Game loop
     bool play = true;
@@ -32,6 +41,11 @@ int GameLoop::startLoop() {
             pipe_manager.updateState(false);
         }
 
+        if (player.getInstance().getPosition().y + player.getInstance().getSize().y > main_window.getSize().y) {
+            init();
+            continue;
+        }
+
         // Render
         main_window.clear();
         for (auto shape_ptr: permanentObjects) {
@@ -50,20 +64,8 @@ int GameLoop::startLoop() {
 }
 
 int GameLoop::init() {
-    if (!background_tex.loadFromFile("../assets/sprites/background-day.png")) {
-        return 1;
-    }
-    if (!base_tex.loadFromFile("../assets/sprites/base.png")) {
-        return 1;
-    }
-
-    if (pipe_manager.init() == 1) {
-        return 1;
-    }
-
-    if (player.init(main_window.getSize().y) == 1) {
-        return 1;
-    }
+    pipe_manager.init();
+    player.init(main_window.getSize().y);
 
     return 0;
 }

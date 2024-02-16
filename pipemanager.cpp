@@ -3,12 +3,24 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+PipeManager::PipeManager() {
+    if (!pipe_tex.loadFromFile("../assets/sprites/pipe-green.png")) {
+        throw std::invalid_argument("Couldn't load file in pipemanager");
+    }
+}
+
+void PipeManager::init() {
+    healthy_state = true;
+    pipes.clear();
+    prev = clock.now();
+}
+
 
 void PipeManager::updatePipes() {
     if (!healthy_state) {
         return;
     }
-    
+
     auto now = clock.now();
     auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - prev).count();
     if (diff >= 5) {

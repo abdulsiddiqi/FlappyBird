@@ -2,16 +2,22 @@
 #include <iostream>
 #include "pipemanager.h"
 
-int Player::init(float window_max_y) {
-        if (!bird_down_tex.loadFromFile("../assets/sprites/bluebird-downflap.png")) {
-            return 1;
-        }
-        if (!bird_mid_tex.loadFromFile("../assets/sprites/bluebird-midflap.png")) {
-            return 1;
-        }
-        if (!bird_up_tex.loadFromFile("../assets/sprites/bluebird-upflap.png")) {
-            return 1;
-        }
+Player::Player() {
+    if (!bird_down_tex.loadFromFile("../assets/sprites/bluebird-downflap.png")) {
+        throw std::invalid_argument("Couldn't load file for player");
+    }
+    if (!bird_mid_tex.loadFromFile("../assets/sprites/bluebird-midflap.png")) {
+        throw std::invalid_argument("Couldn't load file for player");
+    }
+    if (!bird_up_tex.loadFromFile("../assets/sprites/bluebird-upflap.png")) {
+        throw std::invalid_argument("Couldn't load file for player");
+    }
+}
+void Player::init(float window_max_y) {
+        speed_y = 0;
+        prev_update = clock.now();
+        texture_index = 1;
+        healthy_state = true;
 
         bird_ptr = std::make_shared<sf::RectangleShape>();
         bird_ptr->setSize(sf::Vector2f(34*1.5,24*1.5));
@@ -24,7 +30,6 @@ int Player::init(float window_max_y) {
 
         bird_ptr->setTexture(textures[1].get());
 
-        return 0;
     }
 
 void Player::updatePosition(bool up) {

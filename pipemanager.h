@@ -6,19 +6,9 @@
 
 class PipeManager {
 public:
-    PipeManager() {
-        prev = clock.now();
-    }
+    PipeManager();
+    void init();
 
-    // Adds pipes
-    // Removes pipes which are out of bounds
-
-    inline int init() {
-        if (!pipe_tex.loadFromFile("../assets/sprites/pipe-green.png")) {
-            return 1;
-        }
-        return 0;
-    }
     void updatePipes();
     inline void updateState(bool state) {
         healthy_state = state;
@@ -32,7 +22,7 @@ private:
     std::vector<std::shared_ptr<sf::RectangleShape>> pipes;
     std::chrono::steady_clock clock;
     std::chrono::steady_clock::time_point prev;
-    bool healthy_state = true;
+    bool healthy_state;
 };
 
 #endif // PIPEMANAGER_H
