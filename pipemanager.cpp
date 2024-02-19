@@ -27,18 +27,18 @@ void PipeManager::updatePipes() {
         int pipe_size_x = 52*1.5;
         int pipe_size_y = 320*1.5;
 
-        int pipe_gap_distance = 400;
+        int pipe_gap_distance = 150;
         int bot_pipe_pos_y = window_max_y - pipe_size_y;
         int top_pipe_pos_y = window_max_y - bot_pipe_pos_y - pipe_gap_distance;
         std::shared_ptr<sf::RectangleShape> bot_pipe = std::make_shared<sf::RectangleShape>();
         bot_pipe->setSize(sf::Vector2f(pipe_size_x, pipe_size_y));
-        bot_pipe->setPosition(window_max_x + PIPE_INSERTION_BUFFER_X, window_max_y - pipe_size_y);
+        bot_pipe->setPosition(window_max_x + PIPE_INSERTION_BUFFER_X, bot_pipe_pos_y);
         bot_pipe->setTexture(&pipe_tex);
 
         std::shared_ptr<sf::RectangleShape> top_pipe = std::make_shared<sf::RectangleShape>();
         top_pipe->setSize(sf::Vector2f(pipe_size_x, pipe_size_y));
         top_pipe->setRotation(180);
-        top_pipe->setPosition(window_max_x + PIPE_INSERTION_BUFFER_X + pipe_size_x, 320);
+        top_pipe->setPosition(window_max_x + PIPE_INSERTION_BUFFER_X + pipe_size_x, top_pipe_pos_y);
         top_pipe->setTexture(&pipe_tex);
 
         pipes.push_back(bot_pipe);
