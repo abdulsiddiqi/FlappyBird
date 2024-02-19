@@ -2,7 +2,7 @@
 
 class BaseGraphic {
 public:
-    BaseGraphic(unsigned int window_max_x);
+    BaseGraphic(unsigned int window_max_x, int speed_x);
     void init();
 
     void update();
@@ -16,6 +16,7 @@ public:
 
 private:
     unsigned int window_max_x;
+    int speed_x;
     sf::Texture base_tex;
     std::vector<std::shared_ptr<sf::RectangleShape>> base_shapes;
     bool healthy_state;

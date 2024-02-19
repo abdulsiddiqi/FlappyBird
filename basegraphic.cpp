@@ -1,10 +1,12 @@
 #include "basegraphic.h"
 #include <iostream>
 
-BaseGraphic::BaseGraphic(unsigned int window_max_x): window_max_x(window_max_x) {
+BaseGraphic::BaseGraphic(unsigned int window_max_x, int speed_x) {
     if (!base_tex.loadFromFile("../assets/sprites/base.png")) {
         throw std::invalid_argument("Couldn't load file");
     }
+    this->window_max_x = window_max_x;
+    this->speed_x = speed_x;
 }
 
 
@@ -29,7 +31,7 @@ void BaseGraphic::init() {
 void BaseGraphic::update() {
     if (healthy_state) {
         for (auto base_shape_ptr: base_shapes) {
-            base_shape_ptr->move(-1, 0);
+            base_shape_ptr->move(speed_x, 0);
         }
         // Check if one is out of bounds. Then update its position
         for (int i = 0; i < 2; i++) {

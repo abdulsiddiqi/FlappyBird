@@ -6,7 +6,7 @@
 
 class PipeManager {
 public:
-    PipeManager(unsigned int window_max_x, unsigned int window_max_y);
+    PipeManager(unsigned int window_max_x, unsigned int window_max_y, int speed_x);
     void init();
 
     void updatePipes();
@@ -19,6 +19,8 @@ public:
     }
 private:
     unsigned int window_max_x, window_max_y;
+    // The speed at which the pipes move towards the player
+    int speed_x;
     sf::Texture pipe_tex;
     std::vector<std::shared_ptr<sf::RectangleShape>> pipes;
     std::chrono::steady_clock clock;

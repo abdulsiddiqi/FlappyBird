@@ -4,7 +4,7 @@
 #include <memory>
 #include <chrono>
 
-GameLoop::GameLoop(sf::RenderWindow &window, unsigned int xMax, unsigned int yMax) : base_graphic{xMax}, main_window(window), xMax{xMax}, yMax{yMax}, pipe_manager{xMax, yMax} {
+GameLoop::GameLoop(sf::RenderWindow &window, unsigned int xMax, unsigned int yMax) : base_graphic{xMax, -5}, main_window(window), pipe_manager{xMax, yMax, -5} {
     if (!background_tex.loadFromFile("../assets/sprites/background-day.png"))
     {
         throw std::invalid_argument("Couldn't load file");
@@ -13,6 +13,8 @@ GameLoop::GameLoop(sf::RenderWindow &window, unsigned int xMax, unsigned int yMa
     {
         throw std::invalid_argument("Couldn't load file");
     }
+    this->xMax = xMax;
+    this->yMax = yMax;
 };
 
 int GameLoop::startLoop() {
@@ -47,6 +49,7 @@ int GameLoop::startLoop() {
             base_graphic.updateState(false);
         }
 
+        // Check if player has gotten out of bounds vertically
         if (player.getInstance().getPosition().y + player.getInstance().getSize().y > main_window.getSize().y) {
             init();
             continue;
@@ -58,12 +61,12 @@ int GameLoop::startLoop() {
             main_window.draw(*shape_ptr);
         }
 
-        for (auto base_ptr: base_graphic.getInstances()) {
-            main_window.draw(*base_ptr);
-        }
-
         for (auto pipe_ptr: pipe_manager.getPipes()) {
             main_window.draw(*pipe_ptr);
+        }
+
+        for (auto base_ptr: base_graphic.getInstances()) {
+            main_window.draw(*base_ptr);
         }
 
         main_window.draw(player.getInstance());
