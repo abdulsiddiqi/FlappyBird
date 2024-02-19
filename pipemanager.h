@@ -6,7 +6,7 @@
 
 class PipeManager {
 public:
-    PipeManager();
+    PipeManager(unsigned int window_max_x, unsigned int window_max_y);
     void init();
 
     void updatePipes();
@@ -18,11 +18,13 @@ public:
         return pipes;
     }
 private:
+    unsigned int window_max_x, window_max_y;
     sf::Texture pipe_tex;
     std::vector<std::shared_ptr<sf::RectangleShape>> pipes;
     std::chrono::steady_clock clock;
     std::chrono::steady_clock::time_point prev;
     bool healthy_state;
+    const int PIPE_INSERTION_BUFFER_X = 60;
 };
 
 #endif // PIPEMANAGER_H

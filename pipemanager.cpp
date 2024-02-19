@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-PipeManager::PipeManager() {
+PipeManager::PipeManager(unsigned int window_max_x, unsigned int window_max_y): window_max_x{window_max_x}, window_max_y{window_max_y} {
     if (!pipe_tex.loadFromFile("../assets/sprites/pipe-green.png")) {
         throw std::invalid_argument("Couldn't load file in pipemanager");
     }
@@ -23,17 +23,22 @@ void PipeManager::updatePipes() {
 
     auto now = clock.now();
     auto diff = std::chrono::duration_cast<std::chrono::seconds>(now - prev).count();
-    if (diff >= 5) {
+    if (diff >= 2) {
+        int pipe_size_x = 52*1.5;
+        int pipe_size_y = 320*1.5;
 
+        int pipe_gap_distance = 400;
+        int bot_pipe_pos_y = window_max_y - pipe_size_y;
+        int top_pipe_pos_y = window_max_y - bot_pipe_pos_y - pipe_gap_distance;
         std::shared_ptr<sf::RectangleShape> bot_pipe = std::make_shared<sf::RectangleShape>();
-        bot_pipe->setSize(sf::Vector2f(52*1.5, 320*1.5));
-        bot_pipe->setPosition(288*2 + 60, 1024 - bot_pipe->getSize().y);
+        bot_pipe->setSize(sf::Vector2f(pipe_size_x, pipe_size_y));
+        bot_pipe->setPosition(window_max_x + PIPE_INSERTION_BUFFER_X, window_max_y - pipe_size_y);
         bot_pipe->setTexture(&pipe_tex);
 
         std::shared_ptr<sf::RectangleShape> top_pipe = std::make_shared<sf::RectangleShape>();
-        top_pipe->setSize(sf::Vector2f(52*1.5, 320*1.5));
+        top_pipe->setSize(sf::Vector2f(pipe_size_x, pipe_size_y));
         top_pipe->setRotation(180);
-        top_pipe->setPosition(288*2 + 60, 320);
+        top_pipe->setPosition(window_max_x + PIPE_INSERTION_BUFFER_X + pipe_size_x, 320);
         top_pipe->setTexture(&pipe_tex);
 
         pipes.push_back(bot_pipe);

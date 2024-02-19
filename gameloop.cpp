@@ -4,11 +4,13 @@
 #include <memory>
 #include <chrono>
 
-GameLoop::GameLoop(sf::RenderWindow& window): base_graphic{window.getSize().x}, main_window(window) {
-    if (!background_tex.loadFromFile("../assets/sprites/background-day.png")) {
+GameLoop::GameLoop(sf::RenderWindow &window, unsigned int xMax, unsigned int yMax) : base_graphic{xMax}, main_window(window), xMax{xMax}, yMax{yMax}, pipe_manager{xMax, yMax} {
+    if (!background_tex.loadFromFile("../assets/sprites/background-day.png"))
+    {
         throw std::invalid_argument("Couldn't load file");
     }
-    if (!base_tex.loadFromFile("../assets/sprites/base.png")) {
+    if (!base_tex.loadFromFile("../assets/sprites/base.png"))
+    {
         throw std::invalid_argument("Couldn't load file");
     }
 };

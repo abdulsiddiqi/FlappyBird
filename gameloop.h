@@ -6,7 +6,7 @@
 
 class GameLoop {
 public:
-    GameLoop(sf::RenderWindow& window);
+    GameLoop(sf::RenderWindow& window, unsigned int xMax, unsigned int yMax);
 
     int startLoop();
     int initShapes();
@@ -16,6 +16,7 @@ private:
     bool isCollision();
 
     sf::RenderWindow& main_window;
+    unsigned int xMax, yMax;
     sf::Texture background_tex, base_tex;
     std::vector<std::shared_ptr<sf::Shape>> permanentObjects;
     Player player;
